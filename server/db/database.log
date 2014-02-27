@@ -16,3 +16,21 @@ D, [2014-02-27T11:32:10.723867 #65019] DEBUG -- :   [1m[35m (0.0ms)[0m  begin
 D, [2014-02-27T11:32:10.724944 #65019] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mCREATE TABLE "players" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
 D, [2014-02-27T11:32:10.729805 #65019] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "0"]]
 D, [2014-02-27T11:32:10.730533 #65019] DEBUG -- :   [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+D, [2014-02-27T12:26:07.282438 #65928] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+D, [2014-02-27T12:33:50.952826 #66266] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+D, [2014-02-27T12:33:56.606248 #66268] DEBUG -- :   [1m[36m (2.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+D, [2014-02-27T12:33:56.607158 #66268] DEBUG -- :   [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+D, [2014-02-27T12:33:56.607669 #66268] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2014-02-27T12:33:56.607728 #66268]  INFO -- : Migrating to CreatePlayers (0)
+D, [2014-02-27T12:33:56.609360 #66268] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2014-02-27T12:33:56.610443 #66268] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mCREATE TABLE "players" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+D, [2014-02-27T12:33:56.615180 #66268] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "0"]]
+D, [2014-02-27T12:33:56.616370 #66268] DEBUG -- :   [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+D, [2014-02-27T12:35:25.414984 #66281] DEBUG -- :   [1m[36m (1.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+D, [2014-02-27T12:35:25.415928 #66281] DEBUG -- :   [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+D, [2014-02-27T12:35:25.416619 #66281] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+I, [2014-02-27T12:35:25.416693 #66281]  INFO -- : Migrating to CreatePlayers (0)
+D, [2014-02-27T12:35:25.418568 #66281] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2014-02-27T12:35:25.419703 #66281] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mCREATE TABLE "players" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+D, [2014-02-27T12:35:25.424330 #66281] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "0"]]
+D, [2014-02-27T12:35:25.425174 #66281] DEBUG -- :   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m

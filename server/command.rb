@@ -1,4 +1,4 @@
-
+require './player.rb'
 class Command
   attr_accessor :name, :response, :needs_arg
 
@@ -12,8 +12,9 @@ class Command
 
   def process(arg, current_user)
     if(name=='nick')
-      current_user.name=arg
-      current_user.save!
+      #current_user.name=arg
+      #puts current_user
+      #current_user.save
       return "Name changed to #{arg}"
     end
   end

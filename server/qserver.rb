@@ -1,27 +1,27 @@
 require 'socket'
 require './command.rb'
-require './database.rb'
+
+#require './database.rb'
+#init_db
+
+#require './player.rb'
 
 require 'logger'
 
-logger = Logger.new(STDOUT)
-logger.level = Logger::WARN
+require 'active_record'
 
 
-init_db
+# Require all models
+Dir.glob('./app/models/*').each { |r| require r }
 
 
-class Player < ActiveRecord::Base
-  attr_accessor :name, :password, :level, :client
-  def initialize __client
-    name = 'Stranger'
-    password = ''
-    level = 1
-    client = __client
-  end
-end
-
-puts Player.count.to_s+'s players total'
+# Set up the database with ActiveRecord
+require 'yaml'
+dbconfig = YAML::load(File.open('./db/database.yml'))
+ActiveRecord::Base.establish_connection(dbconfig)
+#ActiveRecord::Base.logger = Logger.new(STDERR)
+puts 'SQLite Database intilialized'
+###
 
 class QServer
 
@@ -75,10 +75,11 @@ class QServer
   def start
     puts 'Server started.'
     loop {
+      puts 'loop'
       Thread.start(@s.accept) do |client|
       begin
         puts 'A new user has connected.'
-        @current_user = Player.new(client)
+        @current_user = Player.create
         # Send up the motd, the first response upon login
         motd client
         loop {
@@ -92,6 +93,7 @@ class QServer
           end
         }
       rescue Exception => e
+        client.puts e
         p e
         print e.backtrace.join("\n")
       end
