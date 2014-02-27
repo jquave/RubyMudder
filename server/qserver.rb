@@ -1,6 +1,6 @@
 require 'socket'
 require './command.rb'
-
+require './database.rb'
 
 require 'logger'
 
@@ -8,7 +8,10 @@ logger = Logger.new(STDOUT)
 logger.level = Logger::WARN
 
 
-class Player
+init_db
+
+
+class Player < ActiveRecord::Base
   attr_accessor :name, :password, :level, :client
   def initialize __client
     name = 'Stranger'
@@ -17,6 +20,8 @@ class Player
     client = __client
   end
 end
+
+puts Player.count.to_s+'s players total'
 
 class QServer
 
@@ -71,12 +76,15 @@ class QServer
         @current_user = Player.new(client)
         client.puts "Hello #{@current_user.name}. To change your name type 'nick NewName'"
         loop {
-          clin = client.gets.chomp
-          puts "  - Client says: #{clin}"
-          result = process_command clin
-          puts '  - Send response: '+result
-          client.puts result
-          puts '  - Sent!'
+          clin_raw = client.gets
+          if !clin_raw.nil?
+            clin = clin_raw.chomp
+            puts "  - Client says: #{clin}"
+            result = process_command clin
+            puts '  - Send response: '+result
+            client.puts result
+            puts '  - Sent!'
+          end
         }
       rescue Exception => e
         p e

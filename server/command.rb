@@ -13,6 +13,7 @@ class Command
   def process(arg, current_user)
     if(name=='nick')
       current_user.name=arg
+      current_user.save!
       return "Name changed to #{arg}"
     end
   end
