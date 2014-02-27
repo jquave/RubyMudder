@@ -30,6 +30,7 @@ class QServer
   def initialize
     @s=TCPServer.open(2000)
 
+    # This is dumb, but it stupidly responds for now with basic responses
     @cmds = []
     @cmds << Command.new(:name=>'walk', :response=>'You walk forward.')
     @cmds << Command.new(:name=>'look', :response=>'You see nothing but a small dog.')
@@ -46,6 +47,7 @@ class QServer
   end
 
   # Find the appropriate command object for whatever clin is
+  # I'm so sorry
   def process_command(user_input)
     clin = user_input.split[0]
     arg = nil
@@ -66,6 +68,9 @@ class QServer
     cmd.result(arg,@current_user)
   end
 
+  def motd client
+      client.puts "Hello #{@current_user.name}. To change your name type 'nick NewName'"    
+  end
 
   def start
     puts 'Server started.'
@@ -74,7 +79,8 @@ class QServer
       begin
         puts 'A new user has connected.'
         @current_user = Player.new(client)
-        client.puts "Hello #{@current_user.name}. To change your name type 'nick NewName'"
+        # Send up the motd, the first response upon login
+        motd client
         loop {
           clin_raw = client.gets
           if !clin_raw.nil?
@@ -83,7 +89,6 @@ class QServer
             result = process_command clin
             puts '  - Send response: '+result
             client.puts result
-            puts '  - Sent!'
           end
         }
       rescue Exception => e
