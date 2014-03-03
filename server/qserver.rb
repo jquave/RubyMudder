@@ -35,6 +35,9 @@ class QServer
     @cmds << Command.new(:name=>'walk', :response=>'You walk forward.')
     @cmds << Command.new(:name=>'look', :response=>'You see nothing but a small dog.')
     @cmds << Command.new(:name=>'pet', :response=>'You pet the dog. He bites your hand off. You lose.')
+    @cmds << Command.new(:name=>'run', :response=>'You run away, out of breath, a dragon appears.')
+    @cmds << Command.new(:name=>'slay', :response=>'You hit the dragon with a stick, he responds by eating you whole.')
+    @cmds << Command.new(:name=>'say', :needs_arg=>true)
     @cmds << Command.new(:name=>'nick', :needs_arg=>true)
 
     @defaultCmd=Command.new(:name=>'', :response=>'Nothing happened.')

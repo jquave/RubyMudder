@@ -17,6 +17,9 @@ class Command
       #current_user.save
       return "Name changed to #{arg}"
     end
+    if(name=='say')
+      return 'You call the small dog, "Come here, Bean!"'
+    end
   end
 
   def needs_arg?
